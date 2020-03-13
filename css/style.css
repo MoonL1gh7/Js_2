@@ -1,0 +1,57 @@
+body {
+    background-color: #e6c4ab;
+}
+
+.container {
+    margin: auto;
+    max-width: 900px;
+}
+
+header {
+    padding: 5px;
+    border-bottom: 2px solid black;
+    text-align: right;
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.product-item {
+    text-align: center;
+}
+
+.product-item h3 {
+    color: white;
+    text-shadow: 0px 0px 3px #000000;
+}
+
+.product-item p::after {
+    content: " руб.";
+}
+
+.product-item img {
+    border-radius: 15%;
+}
+
+.btn-cart {
+    border-radius: 5px;
+    border: none;
+    background-color: #bd57d1;
+    padding: .5em;
+    color: white;
+    font-weight: 700;
+}
+
+
+.by-btn {
+    padding: .5em;
+    border: none;
+    background-color: #bd57d1;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+}
+
