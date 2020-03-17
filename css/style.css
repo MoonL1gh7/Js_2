@@ -25,7 +25,7 @@ header {
 
 .product-item h3 {
     color: white;
-    text-shadow: 0px 0px 3px #000000;
+    text-shadow: 0px 0px 3px #8f1e60;
 }
 
 .product-item p::after {
@@ -36,7 +36,7 @@ header {
     border-radius: 15%;
 }
 
-.btn-cart {
+.btn-basket {
     border-radius: 5px;
     border: none;
     background-color: #bd57d1;
@@ -46,7 +46,7 @@ header {
 }
 
 
-.by-btn {
+.buy-btn {
     padding: .5em;
     border: none;
     background-color: #bd57d1;
@@ -54,4 +54,6 @@ header {
     border-radius: 10px;
     color: white;
 }
+
+
 
