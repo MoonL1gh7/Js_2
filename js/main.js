@@ -1,22 +1,67 @@
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/catalogData.json';
+
+let getRequest = (API, cb) => {
+	fetch(API)
+		.then((result) => result.json())
+		.then((data) => {
+			console.log(data);
+			cb(xhr.responseText);
+		})
+		.catch((error) => {
+			console.log('Error!', error)
+		});
+};		
+
+// let getRequest = (url, cb) => {
+//   let xhr = new XMLHttpRequest();
+//   xhr.open('GET', url, true);
+//   xhr.onreadystatechange = () => {
+//     if (xhr.readyState === 4) {
+//       if (xhr.status !== 200) {
+//         console.log('Error');
+//       } else {
+//         cb(xhr.responseText);
+//       }
+//     }
+//   };
+//   xhr.send();
+// };
+
+
 class ProductList {
     constructor(container = '.products') {
         this.container = container;
         this.goods = [];
         this.allProducts = [];
-        this._fetchProducts();
-        this._render();
+        // this._fetchProducts();
+        this._getProducts()
+            .then((data) => {
+                this.goods = [...data];
+                this.render();
+            });
     }
 
-    _fetchProducts() {
-        this.goods = [
-            {id: 1, title: 'Notebook', price: 20000},
-            {id: 2, title: 'Mouse', price: 1500},
-            {id: 3, title: 'Keyboard', price: 5000},
-            {id: 4, title: 'Gamepad', price: 4500},
-        ];
+  // _fetchProducts() {
+  //   getRequest(`${API}/catalogData.json`, (data) => {
+  //     this.goods = JSON.parse(data);
+  //     this.render();
+  //     console.log(this.goods);
+  //   });
+  // }
+
+    _getProducts() {
+        return fetch(API)
+            .then(result => result.json())
+            .catch(error => {
+                console.log('Error!', error);
+            });
     }
 
-    _render() {
+    calcSum(){
+        return this.allProducts.reduce((accum, item) => accum += item.price, 0);
+    }
+
+    render() {
         const block = document.querySelector(this.container);
         for (let product of this.goods) {
             const productObject = new ProductItem(product);
@@ -24,15 +69,12 @@ class ProductList {
             block.insertAdjacentHTML('beforeend', productObject.render());
         }
     }
-
-    _sumOfProducts () {
-        return this.goods.reduce((accum, product) => accum += product.price, 0);
-    }
 }
 
 class ProductItem {
     constructor(product, img='https://placehold.it/200x150') {
-        this.title = product.title;
+        // this.title = product.title;
+        this.title = product.product_name
         this.price = product.price;
         this.id = product.id;
         this.img = img;
@@ -81,7 +123,5 @@ class BasketItem {
 
 }
 
-const list = new ProductList();
-console.log(list._sumOfProducts())
-
+new ProductList();
 
