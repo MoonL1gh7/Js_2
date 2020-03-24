@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Интернет-магазин</title>
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header>
-    <button class="btn-basket" type="button">Корзина</button>
+    <div class="cart">
+        <form action="#" class="search-form">
+            <input type="text" class="search-field">
+            <button class="btn-search" type="submit"></button>
+        </form>
+        <button class="btn-cart" type="button">Корзина</button>
+        <div class="cart-block invisible"></div>
+    </div>
 </header>
 <main>
     <div class="products"></div>
