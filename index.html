@@ -11,8 +11,7 @@
         <div class="cart">
             <form action="#" class="search-form">
                 <input type="text" class="search-field" v-model="searchLine">
-                <button class="btn-search" type="submit" @click="FilterGoods">
-                </button>
+                <button class="btn-search" type="submit" @click="FilterGoods"></button>
             </form>
             <button class="btn-cart" type="button" @click="isVisible = !isVisible">Корзина</button>
             <div class="cart-block" :class="divClasses">
