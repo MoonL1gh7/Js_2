@@ -6,20 +6,39 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header>
-    <div class="cart">
-        <form action="#" class="search-form">
-            <input type="text" class="search-field">
-            <button class="btn-search" type="submit">
-            </button>
-        </form>
-        <button class="btn-cart" type="button">Корзина</button>
-        <div class="cart-block invisible"></div>
-    </div>
-</header>
-<main>
-    <div class="products"></div>
-</main>
+<div id="app">
+    <header>
+        <div class="cart">
+            <form action="#" class="search-form">
+                <input type="text" class="search-field" v-model="searchLine">
+                <button class="btn-search" type="submit" @click="FilterGoods">
+                </button>
+            </form>
+            <button class="btn-cart" type="button" @click="isVisible = !isVisible">Корзина</button>
+            <div class="cart-block" :class="divClasses">
+                <div class="product-item ">
+                    <div class="desc">
+                        <h3>name</h3>
+                        <p>price</p>
+                        <button class="buy-btn" @click="">Купить</button>
+        
+                    </div>  
+                </div>
+            </div>
+    </header>
+    <main>
+        <div class="products">
+            <div class="product-item" v-for="product of filteredGoods" :key="product.id_product">
+                <img :src="imgCatalog" alt="Some img">
+                <div class="desc">
+                    <h3>{{product.product_name}}</h3>
+                    <p>{{product.price}}</p>
+                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>
+            </div>
+        </div>
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src="./js/main.js"></script>
 </body>
 </html>

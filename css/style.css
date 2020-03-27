@@ -97,7 +97,7 @@ header {
     align-self: flex-start;
     margin-right: 15px;
 }
-.btn-basket {
+.btn-cart {
     border-radius: 5px;
     border: none;
     background-color: #bd57d1;
@@ -117,11 +117,8 @@ header {
 }
 
 .btn-search {
-    background-color: transparent;
-    border: none;
-    color: #fafafa;
-    font-size: 1.2em;
-    position: absolute;
+    background-color: #bd57d1;
+    color: #fdfdfd;
     bottom: 5px;
     right: 0;
 }
