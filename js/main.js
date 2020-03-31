@@ -3,14 +3,7 @@ const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-a
 const app = new Vue({
     el: '#app',
     data: {
-        catalogUrl: '/catalogData.json',
-        products: [],
-        imgCatalog: 'https://placehold.it/200x150',
-        imgCatalogSmall: 'https://placehold.it/100x150',
-        filteredGoods: [],
-        searchLine: '',
-        isVisible: false
-
+        userSearch: '',
     },
     methods: {
         getJson(url){
@@ -20,40 +13,9 @@ const app = new Vue({
                     console.log(error);
                 })
         },
-        addProduct(product){
-            console.log(product.id_product);
-        },
-        FilterGoods() {
-            const regexp = new RegExp(this.searchLine, 'i');
-            this.filteredGoods = this.products.filter(product => {
-                return regexp.test(product.product_name);
-            });
-        }
     },
-    mounted(){
-       this.getJson(`${API + this.catalogUrl}`)
-           .then(data => {
-               for(let el of data){
-                   this.products.push(el);
-                   this.filteredGoods.push(el)
-               }
-           });
-        this.getJson(`getProducts.json`)
-            .then(data => {
-                for(let el of data){
-                    this.products.push(el);
-                    this.filteredGoods.push(el)
-                }
-            })
-
-
-    },
-    computed: {
-        divClasses() {
-            return {
-                invisible: !this.isVisible,
-                '': this.isVisible
-            }
-        }
+    mounted() {
+        console.log(this);
     }
-})
+});
+
