@@ -2,14 +2,15 @@ Vue.component('cart', {
     data(){
       return {
           imgCart: 'https://placehold.it/50x100',
-          cartUrl: '/getBasket.json',
+          cartUrl: '/api/cart',
           cartItems: [],
           showCart: false,
       }
     },
     methods: {
         addProduct(product){
-            this.$parent.getJson(`${API}/addToBasket.json`)
+            //console.log(product);
+            this.$parent.postJson(`${API + this.cartUrl}`, product)
                 .then(data => {
                     if(data.result === 1){
                         let find = this.cartItems.find(el => el.id_product === product.id_product);
@@ -25,7 +26,7 @@ Vue.component('cart', {
                 })
         },
         remove(item) {
-            this.$parent.getJson(`${API}/deleteFromBasket.json`)
+            this.$parent.deleteJson(`${API + this.cartUrl}`, item)
                 .then(data => {
                     if(data.result === 1) {
                         if(item.quantity>1){
@@ -40,6 +41,7 @@ Vue.component('cart', {
     mounted(){
         this.$parent.getJson(`${API + this.cartUrl}`)
             .then(data => {
+                // console.log(data);
                 for(let el of data.contents){
                     this.cartItems.push(el);
                 }
